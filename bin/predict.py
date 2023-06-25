@@ -16,7 +16,7 @@ basePath = os.path.abspath(os.path.join(os.path.join(os.path.dirname(__file__), 
 sys.path.extend([basePath, os.path.join(basePath, "model")])
 
 from model import createModel
-from logger import WedaLogger
+from logger import Logger
 from checker import gpuChecker, initGpuChecker
 
 gpuNo = initGpuChecker()
@@ -30,7 +30,7 @@ class Predictor():
         self.pathInfo = pathInfo
         self.modelPath = self.pathInfo["modelPath"] if "modelPath" in self.pathInfo else '/app'
         self.weightPath = self.pathInfo["weightPath"] if "weightPath" in self.pathInfo else "/app/weight"
-        self.log = WedaLogger(logPath=os.path.join(self.modelPath, "log/predict.log"), logLevel="info")
+        self.log = Logger(logPath=os.path.join(self.modelPath, "log/predict.log"), logLevel="info")
 
         # set cpu/gpu
         self.setGpu()
